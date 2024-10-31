@@ -1,14 +1,11 @@
-// src/routes/index.js
-import express from 'express'; 
-import AppController from '../controllers/AppController.js'; 
+import express from 'express';
+import AppController from '../controllers/AppController.js';  // Add .js extension
+import UsersController from '../controllers/UsersController.js';  // Add .js extension
 
-const router = express.Router(); 
+const router = express.Router();
 
-// Log the current directory
-console.log("Current Directory in routes/index.js:", __dirname);
-
-// Define your routes
 router.get('/status', AppController.getStatus);
 router.get('/stats', AppController.getStats);
+router.post('/users', UsersController.postNew);
 
 export default router;
