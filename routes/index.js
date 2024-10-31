@@ -4,10 +4,10 @@ import UsersController from '../controllers/UsersController.js';
 
 const router = express.Router();
 
-// Add a test route for root
-router.get('/', (req, res) => {
-    res.send('Server is working!');
-});
+// Remove the test route
+// router.get('/', (req, res) => {
+//     res.send('Server is working!');
+// });
 
 router.get('/status', AppController.getStatus);
 router.get('/stats', AppController.getStats);

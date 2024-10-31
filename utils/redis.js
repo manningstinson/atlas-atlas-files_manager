@@ -3,14 +3,24 @@ import { promisify } from 'util';
 
 class RedisClient {
   constructor() {
-    this.client = createClient();
+    this.client = createClient({
+      url: 'redis://localhost:6379',
+      legacyMode: true
+    });
+
+    this.client.connect().catch(console.error);
+    
     this.client.on('error', (error) => {
       console.error('Redis client error:', error);
+    });
+
+    this.client.on('connect', () => {
+      console.log('Redis client connected');
     });
   }
 
   isAlive() {
-    return this.client.connected;
+    return this.client.isOpen;  // Changed from connected to isOpen
   }
 
   async get(key) {
