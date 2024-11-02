@@ -1,21 +1,21 @@
-import redisClient from '../utils/redis.js';  // Add .js extension
-import dbClient from '../utils/db.js';  // Add .js extension
+import redisClient from '../utils/redis';
+import dbClient from '../utils/db';
 
 class AppController {
   static getStatus(req, res) {
     const status = {
       redis: redisClient.isAlive(),
-      db: dbClient.isAlive()
+      db: dbClient.isAlive(),
     };
-    res.status(200).json(status);
+    return res.status(200).json(status);
   }
 
   static async getStats(req, res) {
     const stats = {
       users: await dbClient.nbUsers(),
-      files: await dbClient.nbFiles()
+      files: await dbClient.nbFiles(),
     };
-    res.status(200).json(stats);
+    return res.status(200).json(stats);
   }
 }
 
