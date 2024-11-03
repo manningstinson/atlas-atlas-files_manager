@@ -6,17 +6,15 @@ class DBClient {
     const host = process.env.DB_HOST || 'localhost';
     const port = process.env.DB_PORT || 27017;
     const database = process.env.DB_DATABASE || 'files_manager';
-    
     const url = `mongodb://${host}:${port}`;
-    
-    this.client = new MongoClient(url, { 
+    this.client = new MongoClient(url, {
       useUnifiedTopology: true,
-      useNewUrlParser: true 
+      useNewUrlParser: true
     });
-    
     this.client.connect()
       .then(() => {
         this.db = this.client.db(database);
+        console.log('MongoDB connected successfully');  // Added connection success log
       })
       .catch((error) => {
         console.error('MongoDB connection error:', error);
