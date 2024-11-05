@@ -1,3 +1,5 @@
+ // Added a helpers file to optimize code
+
 import pkg from 'mongodb';
 const { ObjectId } = pkg;
 
